@@ -1,0 +1,86 @@
+<html lang="en">
+	<head>
+		<title>Let'sEngage-Ongoing Call</title>
+		<style>
+        body {
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        </style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container-fluid p-0">
+			<div id="main-container">
+				<div id="buttons-container" class="row justify-content-center mt-3">
+					<div class="mr-3 text-center">
+						<button id="mic-btn" type="button" class="btn btn-block btn-dark btn-lg">
+							<i id="mic-icon" class="fas fa-microphone"></i>
+						</button>
+					</div>
+					<div class="mr-3 text-center">
+						<button id="exit-btn"  type="button" class="btn btn-block btn-danger btn-lg">
+							<i id="exit-icon" class="fas fa-phone-slash"></i>
+						</button>
+					</div>
+					<div class="mr-3 text-center">
+						<button id="video-btn"  type="button" class="btn btn-block btn-dark btn-lg">
+							<i id="video-icon" class="fas fa-video"></i>
+						</button>
+					</div>
+				</div>
+				<div id="full-screen-video"></div>
+				<div id="lower-video-bar" class="row mb-1">
+					<div id="remote-streams-container" class="container col-9 ml-1">
+						<div id="remote-streams" class="row">
+							<!-- insert remote streams dynamically -->
+						</div>
+					</div>
+					<div id="local-stream-container" class="col p-0">
+						<div id="mute-overlay" class="col">
+							<i id="mic-icon" class="fas fa-microphone-slash"></i>
+						</div>
+						<div id="no-local-video" class="col text-center">
+							<i id="user-icon" class="fas fa-user"></i>
+						</div>
+						<div id="local-video" class="col p-0"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="AgoraRTCSDK-3.3.1.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+	<script src="ui.js"></script>
+	<script src="ui-interface.js"></script>
+	<script type="text/javascript">
+		$("#mic-btn").prop("disabled", true);
+		$("#video-btn").prop("disabled", true);
+		$("#exit-btn").prop("disabled", true);
+	</script>
+	<script type="text/javascript">
+		const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+		const channelName = params.q;
+		console.log(channelName);
+		const agoraAppId = 'ec6ca9b52e5d43b19d3f1e0f6fcefea7';
+		const token = '';
+		const uid = Math.floor(Math.random() * 100);
+		console.log(uid);
+		initClientAndJoinChannel(agoraAppId, token, channelName, uid);
+	</script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</html>

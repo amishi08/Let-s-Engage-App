@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>LetsEngage-Video Calling Website</title>
+        <style>
+        body {
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        </style>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+    <body style="background-color:#E3F1FE">
+        <br>
+        <br>
+        <div class="col-8 col-md-3">
+            <img src="logo.png" alt="Logo" class="offset-1 offset-md-2" style="width:100%;">
+        </div>
+        <div class="container" style="margin-top:3%">
+    <div class="row">
+        <div class="col-sm">
+            <div style="align-items:center;margin-bottom:5%;padding-top:12%">
+                <h1 >Free video calls just a click away.</h1>
+                <h5>Built upon technology you can rely for your important meetings.</h5>
+                <br>
+                <br>
+                <br>
+                <div>
+                    <button type="button" class="btn btn-primary mr-1 mb-1" data-toggle="modal" data-target="#ModalCenterCreate" onclick="generateId()">Create Meeting ID</button>
+                    <button type="button" class="btn btn-success mr-1 mb-1" data-toggle="modal" data-target="#ModalCenterJoin">Join Meeting</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div>
+                <img src="home-image.jpg" alt="home-illustration" style="width:100%;height:auto;">
+            </div>
+        </div>
+    </div>
+        
+        
+  <div class="modal fade" id="ModalCenterCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div  div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Here's you engage ID</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="input-group">
+                <input type="text" class="form-control"
+                    value="/path/to/foo/bar" placeholder="Some path" id="copy-input">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a id="aJoinDirect" href="#"><button type="button" class="btn btn-primary">Join</button></a>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="modal fade" id="ModalCenterJoin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Join Meeting</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="input-group">
+                <input type="text" class="form-control"
+                     placeholder="Enter 8-digit Engage ID" id="idInput" onkeyup="EnableDisable(this)">
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a id="aJoin" href="#"><button type="button" class="btn btn-success" disabled="disabled" id="btnJoin">Join</button></a>
+        </div>
+        </div>
+    </div>
+    </div>
+    </body>
+    <script type="text/javascript">
+        function EnableDisable(id) {
+            var btnJoin = document.getElementById("btnJoin");
+            if (id.value.length == 8) {
+                btnJoin.disabled = false;
+                const link = "http://localhost:5000/join?q="+id.value;
+                document.getElementById("aJoin").href = link;
+            } else {
+                btnJoin.disabled = true;
+            }
+        };
+    </script>
+    <script type="text/javascript">
+        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+        function generateString(length) {
+            let result = '';
+            const charactersLength = characters.length;
+            for ( let i = 0; i < length; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        }
+        function generateId() {
+            console.log('generateid called');
+            const id = generateString(8);
+            document.getElementById("copy-input").value = id;
+            const link = "http://localhost:5000/join?q="+id;
+            document.getElementById("aJoinDirect").href = link;
+        }
+    </script>
+    <script type="text/javascript">
+        $('#ModalCenterJoin').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        })
+    </script>
+</html>
